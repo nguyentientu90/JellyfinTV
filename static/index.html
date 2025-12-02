@@ -15,7 +15,7 @@
         }
 
         .container {
-            max_width: 900px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -199,6 +199,7 @@
             left: 0;
             width: 100%;
             -webkit-appearance: none;
+            appearance: none;
             background: transparent;
             pointer-events: none;
         }
@@ -525,13 +526,23 @@
                     return;
                 }
 
-                // Sort alphabetically
-                items.sort((a, b) => a.Name.localeCompare(b.Name));
+                // Sort alphabetically (by Series Name then Episode Name if applicable)
+                items.sort((a, b) => {
+                    const nameA = a.SeriesName ? `${a.SeriesName} ${a.Name}` : a.Name;
+                    const nameB = b.SeriesName ? `${b.SeriesName} ${b.Name}` : b.Name;
+                    return nameA.localeCompare(nameB);
+                });
 
                 items.slice(0, 100).forEach(item => {
                     const div = document.createElement('label');
                     div.className = 'show-item';
-                    div.innerHTML = `<input type="checkbox" value="${item.Id}"> <span class="show-name">${item.Name}</span> <span style="color:#888; margin-left:5px">(${item.ProductionYear || '?'})</span>`;
+
+                    let displayName = item.Name;
+                    if (item.SeriesName) {
+                        displayName = `<strong>${item.SeriesName}</strong> - ${item.Name}`;
+                    }
+
+                    div.innerHTML = `<input type="checkbox" value="${item.Id}"> <span class="show-name">${displayName}</span> <span style="color:#888; margin-left:5px">(${item.ProductionYear || '?'})</span>`;
                     list.appendChild(div);
                 });
 

@@ -66,7 +66,8 @@ class JellyfinClient:
         
         params = {
             "Recursive": "true",
-            "Fields": "Overview,RunTimeTicks,ProductionYear,Genres,Tags",
+            "Recursive": "true",
+            "Fields": "Overview,RunTimeTicks,ProductionYear,Genres,Tags,SeriesName",
             "IncludeItemTypes": ",".join(criteria.get("item_types", ["Movie", "Episode"])),
         }
         
