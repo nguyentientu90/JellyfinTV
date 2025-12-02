@@ -13,9 +13,9 @@ JellyfinTV simulates a linear TV experience using your existing Jellyfin library
 - **Direct Streaming**: Plays content directly from your Jellyfin server to your browser.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/ea3c55cf-ef15-409f-a072-db4abd80abaf" width="32%" alt="JellyfinTV Dashboard" />
-  <img src="https://github.com/user-attachments/assets/c09992d6-35a3-4cb7-b245-62847520ba5d" width="32%" alt="Channel Creation" />
-  <img src="https://github.com/user-attachments/assets/90cf2174-b18f-4774-aeec-edfba66305f0" width="32%" alt="Schedule View" />
+<img src="https://github.com/user-attachments/assets/8e78af50-4d3d-4875-b03f-b9d8561f8eeb" width="32%" alt="Detailed Screenshot 1" />
+<img src="https://github.com/user-attachments/assets/e12536f4-c89e-456b-8257-0d4699a71d35" width="32%" alt="Detailed Screenshot 2" />
+<img src="https://github.com/user-attachments/assets/b1c45c29-1a37-40a9-b4ef-b84d89ccebcf" width="32%" alt="Detailed Screenshot 3" />
 </p>
 
 
