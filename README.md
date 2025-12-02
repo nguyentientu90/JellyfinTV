@@ -1,5 +1,6 @@
 # JellyfinTV
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Spaces-yellow?style=flat&logo=huggingface)](https://huggingface.co/spaces/drewThomasson/JellfinTV)
+[![Docker Pulls](https://img.shields.io/docker/pulls/athomasson2/jellyfintv?style=flat&logo=docker&color=lightseagreen)](https://hub.docker.com/r/athomasson2/jellyfintv)
 
 JellyfinTV simulates a linear TV experience using your existing Jellyfin library. Create virtual channels based on genres, studios, or tags, and the app will schedule programming that runs continuously in the background.
 
