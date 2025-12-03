@@ -361,6 +361,62 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+
+        /* Schedule Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid var(--border);
+            width: 80%;
+            max-width: 800px;
+            border-radius: var(--radius);
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: #fff;
+        }
+
+        .schedule-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .schedule-item {
+            display: flex;
+            gap: 15px;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+            align-items: center;
+        }
+
+        .schedule-time {
+            font-family: monospace;
+            color: var(--primary);
+            min-width: 60px;
+        }
     </style>
 </head>
 
@@ -416,7 +472,16 @@
                 </div>
             </div>
 
-            <h3 style="margin-top:30px;">1. Select Genres</h3>
+            <h3 style="margin-top:30px;">1. Select Content Type & Genres</h3>
+            <div style="margin-bottom: 20px; display: flex; gap: 20px;">
+                <label class="filter-item">
+                    <input type="checkbox" id="type-movie" value="Movie" checked onchange="scheduleUpdate()"> Movies
+                </label>
+                <label class="filter-item">
+                    <input type="checkbox" id="type-series" value="Series" checked onchange="scheduleUpdate()"> TV Shows
+                </label>
+            </div>
+
             <div class="grid-container" id="genre-grid">
                 <div class="loading">Loading genres...</div>
             </div>
@@ -474,6 +539,18 @@
             <h2>Your Channels</h2>
             <ul class="channel-list" id="channel-list">
                 <!-- Channels here -->
+            </ul>
+        </div>
+    </div>
+    </div>
+
+    <!-- Schedule Modal -->
+    <div id="schedule-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeScheduleModal()">&times;</span>
+            <h2 id="modal-channel-name">Channel Schedule</h2>
+            <ul class="schedule-list" id="modal-schedule-list">
+                <div class="loading">Loading...</div>
             </ul>
         </div>
     </div>
@@ -634,7 +711,8 @@
                 years: years,
                 studios: selectedStudios,
                 ratings: selectedRatings,
-                tags: selectedTags
+                tags: selectedTags,
+                content_types: getContentTypes()
             };
 
             try {
@@ -716,6 +794,13 @@
             return Array.from(document.querySelectorAll(`${selector} input:checked`)).map(cb => cb.value);
         }
 
+        function getContentTypes() {
+            const types = [];
+            if (document.getElementById('type-movie').checked) types.push('Movie');
+            if (document.getElementById('type-series').checked) types.push('Series');
+            return types;
+        }
+
         // --- Channel Management ---
         async function createChannel() {
             const id = document.getElementById('ch-id').value;
@@ -743,7 +828,8 @@
                 studios: selectedStudios,
                 ratings: selectedRatings,
                 tags: selectedTags,
-                include_items: selectedItems.length > 0 ? selectedItems : undefined
+                include_items: selectedItems.length > 0 ? selectedItems : undefined,
+                content_types: getContentTypes()
             };
 
             const payload = {
@@ -784,6 +870,8 @@
 
             // Reset slider
             // (Simplified: just reload defaults or keep as is)
+            document.getElementById('type-movie').checked = true;
+            document.getElementById('type-series').checked = true;
         }
 
         async function loadChannels() {
@@ -798,6 +886,7 @@
                     <div class="channel-header">
                         <span class="channel-name">${ch.name}</span>
                         <div class="channel-actions">
+                            <button class="secondary" onclick="showSchedule(${ch.id}, '${ch.name}')" style="padding:8px 12px; font-size:14px;">📅 Schedule</button>
                             <button class="secondary" onclick="editChannel(${ch.id})">Edit</button>
                             <a href="/watch/${ch.id}" target="_blank"><button>Watch</button></a>
                             <button class="danger" onclick="deleteChannel(${ch.id})">Delete</button>
@@ -865,6 +954,56 @@
             document.getElementById('create-channel-section').scrollIntoView({ behavior: 'smooth' });
         }
 
+        // --- Schedule Modal ---
+        async function showSchedule(channelId, channelName) {
+            const modal = document.getElementById('schedule-modal');
+            const list = document.getElementById('modal-schedule-list');
+            document.getElementById('modal-channel-name').innerText = `Schedule: ${channelName}`;
+            modal.style.display = 'block';
+            list.innerHTML = '<div class="loading">Loading schedule...</div>';
+
+            try {
+                const res = await fetch(`/api/channels/${channelId}/schedule`);
+                const items = await res.json();
+
+                list.innerHTML = '';
+                if (items.length === 0) {
+                    list.innerHTML = '<div class="loading">No upcoming items.</div>';
+                    return;
+                }
+
+                items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'schedule-item';
+
+                    const date = new Date(item.start_time);
+                    const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                    li.innerHTML = `
+                        <span class="schedule-time">${timeStr}</span>
+                        <div>
+                            <div style="font-weight:bold;">${item.item_name}</div>
+                            <div style="font-size:12px; color:#aaa;">${item.item_type} • ${Math.round(item.duration_seconds / 60)} mins</div>
+                        </div>
+                    `;
+                    list.appendChild(li);
+                });
+            } catch (e) {
+                list.innerHTML = '<div class="loading">Error loading schedule.</div>';
+            }
+        }
+
+        function closeScheduleModal() {
+            document.getElementById('schedule-modal').style.display = 'none';
+        }
+
+        // Close modal on outside click
+        window.onclick = function (event) {
+            const modal = document.getElementById('schedule-modal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 </body>
 

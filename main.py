@@ -179,6 +179,11 @@ async def search_library(criteria: dict):
     unique_map = {}
     final_items = []
     
+    content_types = criteria.get("content_types", [])
+    # If empty, assume all
+    if not content_types:
+        content_types = ["Movie", "Series"]
+        
     for item in items:
         # If it's an episode, use SeriesId as key. If Movie, use Id.
         series_id = item.get("SeriesId")
@@ -186,6 +191,9 @@ async def search_library(criteria: dict):
         
         if series_id:
             # It's an episode (or part of a series)
+            if "Series" not in content_types:
+                continue
+                
             if series_id not in unique_map:
                 # Create a "Show" entry based on this episode
                 # We want the Series Name and Series Image
@@ -205,6 +213,9 @@ async def search_library(criteria: dict):
                 unique_map[series_id]["EpisodeCount"] += 1
         else:
             # It's a Movie or something else without SeriesId
+            if "Movie" not in content_types:
+                continue
+                
             if item_id not in unique_map:
                 item["ImageTag"] = item.get("ImageTags", {}).get("Primary")
                 item["IsSeries"] = False
